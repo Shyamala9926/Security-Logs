@@ -1,0 +1,20 @@
+2024-01-15T10:30:15 Failed login attempt from IP 192.168.1.105 for user admin
+2024-01-15T10:30:22 Failed login attempt from IP 10.0.0.45 for user root
+2024-01-15T10:31:05 Successful login from IP 192.168.1.100 for user johndoe
+2024-01-15T10:32:18 Failed login attempt from IP 172.16.0.23 for user administrator
+2024-01-15T10:33:44 Port scan detected from IP 203.0.113.15 scanning ports 80,443,22
+2024-01-15T10:34:12 Malware detected: Trojan.Win32.Generic in file C:\temp\malicious.exe
+2024-01-15T10:35:00 Successful login from IP 192.168.1.102 for user alice
+2024-01-15T10:35:33 Port scan detected from IP 198.51.100.42 scanning ports 21,22,23,80
+2024-01-15T10:36:15 Failed login attempt from IP 203.0.113.88 for user guest
+2024-01-15T10:37:22 Firewall blocked connection from IP 203.0.113.99 to port 445
+2024-01-15T10:38:45 Malware detected: Spyware.Generic.401 in file D:\downloads\suspicious.doc
+2024-01-15T10:39:12 Successful login from IP 192.168.1.103 for user bob
+2024-01-15T10:40:30 Firewall blocked connection from IP 198.51.100.77 to port 135
+2024-01-15T10:41:18 Failed login attempt from IP 172.16.0.88 for user support
+2024-01-15T10:42:05 DDoS attack detected from multiple IPs targeting server 192.168.1.50
+2024-01-15T10:43:22 Successful login from IP 10.0.0.12 for user charlie
+2024-01-15T10:44:15 Port scan detected from IP 203.0.113.123 scanning ports 1433,3389,5432
+2024-01-15T10:45:33 Firewall blocked connection from IP 172.16.0.200 to port 3389
+2024-01-15T10:46:44 Failed login attempt from IP 198.51.100.156 for user service
+2024-01-15T10:47:12 Malware detected: Ransomware.Generic.888 in file E:\shared\encrypted.zip
