@@ -1,427 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Security Log Template Mining</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-        
-        .header {
-            background: linear-gradient(45deg, #2c3e50, #34495e);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
-        
-        .header p {
-            opacity: 0.9;
-            font-size: 1.1em;
-        }
-        
-        .main-content {
-            padding: 40px;
-        }
-        
-        .upload-section {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            border: 2px dashed #dee2e6;
-            transition: all 0.3s ease;
-        }
-        
-        .upload-section:hover {
-            border-color: #667eea;
-            background: #f0f2ff;
-        }
-        
-        .file-input-wrapper {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-            margin-right: 20px;
-        }
-        
-        .file-input {
-            position: absolute;
-            opacity: 0;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .file-input-label {
-            background: #667eea;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        
-        .file-input-label:hover {
-            background: #5a6fd8;
-            transform: translateY(-2px);
-        }
-        
-        .analyze-btn, .analyze-text-btn {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 5px;
-        }
-        
-        .analyze-btn:hover, .analyze-text-btn:hover {
-            background: #218838;
-            transform: translateY(-2px);
-        }
-        
-        .text-input-section {
-            margin-top: 30px;
-        }
-        
-        .text-input {
-            width: 100%;
-            height: 200px;
-            border: 2px solid #dee2e6;
-            border-radius: 10px;
-            padding: 15px;
-            font-family: monospace;
-            font-size: 14px;
-            resize: vertical;
-        }
-        
-        .results {
-            margin-top: 30px;
-        }
-        
-        .stats-card {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-        }
-        
-        .stat-item {
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            opacity: 0.9;
-        }
-        
-        .template-card {
-            background: white;
-            border: 1px solid #dee2e6;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-        }
-        
-        .template-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-        
-        .template-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .template-id {
-            background: #667eea;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-        
-        .template-count {
-            background: #28a745;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-        }
-        
-        .template-pattern {
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 10px;
-            font-family: monospace;
-            font-size: 14px;
-            word-break: break-all;
-            margin-bottom: 15px;
-        }
-        
-        .examples {
-            margin-top: 15px;
-        }
-        
-        .example {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            padding: 10px;
-            margin: 5px 0;
-            font-family: monospace;
-            font-size: 12px;
-            word-break: break-all;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #667eea;
-        }
-        
-        .spinner {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border-left: 4px solid #dc3545;
-        }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <div class="container">
-        <div class="header">
-            <h1>🔍 Security Log Template Mining</h1>
-            <p>Unsupervised LLM-based Pattern Detection for Cybersecurity Event Logs</p>
-        </div>
-        
-        <div class="main-content">
-            <div class="upload-section">
-                <h3>📁 Upload Log File</h3>
-                <p style="margin: 15px 0; color: #666;">Upload a text file containing security event logs (one log entry per line)</p>
-                
-                <div class="file-input-wrapper">
-                    <input type="file" id="logFile" class="file-input" accept=".txt,.log">
-                    <label for="logFile" class="file-input-label">Choose File</label>
-                </div>
-                <button id="analyzeBtn" class="analyze-btn">🔍 Analyze Logs</button>
-                <span id="fileName" style="margin-left: 20px; color: #666;"></span>
-                
-                <div class="text-input-section">
-                    <h4>Or paste log entries directly:</h4>
-                    <textarea id="logText" class="text-input" placeholder="Paste your log entries here (one per line)..."></textarea>
-                    <button id="analyzeTextBtn" class="analyze-text-btn">🔍 Analyze Text</button>
-                </div>
-            </div>
-            
-            <div id="results" class="results" style="display: none;">
-                <div id="statsCard" class="stats-card"></div>
-                <div id="templates"></div>
-            </div>
-            
-            <div id="loading" class="loading" style="display: none;">
-                <div class="spinner"></div>
-                <h3>Analyzing logs and extracting templates...</h3>
-            </div>
-            
-            <div id="error" class="error" style="display: none;"></div>
-        </div>
-    </div>
+      <div class="header">
+        <h1>🔍 Security Log Template Mining</h1>
+        <p>
+          Unsupervised LLM-based Pattern Detection for Cybersecurity Event Logs
+        </p>
+      </div>
 
-    <script>
-        const API_BASE = 'http://localhost:8000';
-        
-        document.getElementById('logFile').addEventListener('change', function(e) {
-            const fileName = e.target.files[0]?.name || '';
-            document.getElementById('fileName').textContent = fileName;
-        });
-        
-        document.getElementById('analyzeBtn').addEventListener('click', async function() {
-            const fileInput = document.getElementById('logFile');
-            const file = fileInput.files[0];
-            
-            if (!file) {
-                showError('Please select a log file first');
-                return;
-            }
-            
-            const formData = new FormData();
-            formData.append('file', file);
-            
-            await analyzeData(API_BASE + '/analyze', {
-                method: 'POST',
-                body: formData
-            });
-        });
-        
-        document.getElementById('analyzeTextBtn').addEventListener('click', async function() {
-            const textInput = document.getElementById('logText');
-            const text = textInput.value.trim();
-            
-            if (!text) {
-                showError('Please enter some log entries first');
-                return;
-            }
-            
-            const logs = text.split('\n').filter(line => line.trim());
-            
-            await analyzeData(API_BASE + '/analyze-text', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(logs)
-            });
-        });
-        
-        async function analyzeData(url, options) {
-            showLoading();
-            hideError();
-            hideResults();
-            
-            try {
-                const response = await fetch(url, options);
-                const data = await response.json();
-                
-                if (!response.ok) {
-                    throw new Error(data.detail || 'Analysis failed');
-                }
-                
-                displayResults(data);
-            } catch (error) {
-                console.error('Error:', error);
-                showError('Error analyzing logs: ' + error.message);
-            } finally {
-                hideLoading();
-            }
-        }
-        
-        function displayResults(data) {
-            const statsCard = document.getElementById('statsCard');
-            const templatesDiv = document.getElementById('templates');
-            
-            // Display statistics
-            statsCard.innerHTML = `
-                <div class="stat-item">
-                    <div class="stat-value">${data.statistics.total_logs}</div>
-                    <div class="stat-label">Total Logs</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">${data.statistics.unique_templates}</div>
-                    <div class="stat-label">Templates Found</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value">${data.statistics.coverage_percentage}%</div>
-                    <div class="stat-label">Coverage</div>
-                </div>
-            `;
-            
-            // Display templates
-            templatesDiv.innerHTML = '';
-            data.templates.forEach(template => {
-                const templateCard = document.createElement('div');
-                templateCard.className = 'template-card';
-                
-                templateCard.innerHTML = `
-                    <div class="template-header">
-                        <span class="template-id">Template #${template.id}</span>
-                        <span class="template-count">${template.count} occurrences</span>
-                    </div>
-                    <div class="template-pattern">${template.template}</div>
-                    <div><strong>Confidence:</strong> ${(template.confidence * 100).toFixed(1)}%</div>
-                    <div class="examples">
-                        <strong>Examples:</strong>
-                        ${template.examples.map(example => 
-                            `<div class="example">${example}</div>`
-                        ).join('')}
-                    </div>
-                `;
-                
-                templatesDiv.appendChild(templateCard);
-            });
-            
-            showResults();
-        }
-        
-        function showLoading() {
-            document.getElementById('loading').style.display = 'block';
-        }
-        
-        function hideLoading() {
-            document.getElementById('loading').style.display = 'none';
-        }
-        
-        function showResults() {
-            document.getElementById('results').style.display = 'block';
-        }
-        
-        function hideResults() {
-            document.getElementById('results').style.display = 'none';
-        }
-        
-        function showError(message) {
-            const errorDiv = document.getElementById('error');
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-        }
-        
-        function hideError() {
-            document.getElementById('error').style.display = 'none';
-        }
-    </script>
-</body>
+      <div class="main-content">
+        <div class="upload-section">
+          <h3>📁 Upload Log File</h3>
+          <p style="margin: 15px 0; color: #666">
+            Upload a text file containing security event logs (one log entry per
+            line)
+          </p>
+
+          <div class="file-input-wrapper">
+            <input
+              type="file"
+              id="logFile"
+              class="file-input"
+              accept=".txt,.log"
+            />
+            <label for="logFile" class="file-input-label">Choose File</label>
+          </div>
+          <button id="analyzeBtn" class="analyze-btn">🔍 Analyze Logs</button>
+          <span id="fileName" style="margin-left: 20px; color: #666"></span>
+
+          <div class="text-input-section">
+            <h4>Or paste log entries directly:</h4>
+            <textarea
+              id="logText"
+              class="text-input"
+              placeholder="Paste your log entries here (one per line)..."
+            ></textarea>
+            <button id="analyzeTextBtn" class="analyze-text-btn">
+              🔍 Analyze Text
+            </button>
+          </div>
+        </div>
+
+        <div id="results" class="results" style="display: none">
+          <div id="statsCard" class="stats-card"></div>
+          <div id="templates"></div>
+        </div>
+
+        <div id="loading" class="loading" style="display: none">
+          <div class="spinner"></div>
+          <h3>Analyzing logs and extracting templates...</h3>
+        </div>
+        <div id="error" class="error" style="display: none"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
