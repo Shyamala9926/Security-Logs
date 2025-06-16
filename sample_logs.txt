@@ -18,3 +18,5 @@
 2024-01-15T10:45:33 Firewall blocked connection from IP 172.16.0.200 to port 3389
 2024-01-15T10:46:44 Failed login attempt from IP 198.51.100.156 for user service
 2024-01-15T10:47:12 Malware detected: Ransomware.Generic.888 in file E:\shared\encrypted.zip
+2024-01-15T10:44:15 Port scan detected from IP 203.0.113.123 scanning ports 1433,3389,5432
+2024-01-15T10:44:15 Port scan detected from IP 203.0.113.123 scanning ports 1433,3389,5432
