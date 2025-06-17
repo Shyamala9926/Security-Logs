@@ -103,7 +103,7 @@ uvicorn==0.24.0
 python-multipart==0.0.6
 pydantic==2.5.0
 
-🛠️ Technologies & Tools Used
+# 🛠️ Technologies & Tools Used
 Component	Tool
 LLM	OpenAI GPT-3.5/4
 Backend API	FastAPI
