@@ -98,10 +98,10 @@ The backend will run on `http://localhost:8000`
 - The system uses simple pattern matching to simulate LLM-based analysis
 - Templates are extracted based on log structure and recurring patterns
 # requirements.txt
-fastapi==0.104.1
-uvicorn==0.24.0
-python-multipart==0.0.6
-pydantic==2.5.0
+- fastapi==0.104.1
+- uvicorn==0.24.0
+- python-multipart==0.0.6
+- pydantic==2.5.0
 
 # 🛠️ Technologies & Tools Used
 Component	Tool
