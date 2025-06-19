@@ -104,8 +104,8 @@ The backend will run on `http://localhost:8000`
 - pydantic==2.5.0
 
 # 🛠️ Technologies & Tools Used
-Component	Tool
-LLM	OpenAI GPT-3.5/4
+- Component	Tool
+- LLM	OpenAI GPT-3.5/4
 Backend API	FastAPI
 Communication	HTTP POST (REST API)
 Input Format	Plain text logs
