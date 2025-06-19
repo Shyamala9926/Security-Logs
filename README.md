@@ -106,7 +106,7 @@ The backend will run on `http://localhost:8000`
 # 🛠️ Technologies & Tools Used
 - Component	Tool
 - LLM	OpenAI GPT-3.5/4
-Backend API	FastAPI
-Communication	HTTP POST (REST API)
+- Backend API	FastAPI
+- Communication	HTTP POST (REST API)
 Input Format	Plain text logs
 Output Format	Templates (text or JSON)
