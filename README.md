@@ -36,7 +36,7 @@ pip install -r requirements.txt
 #### Run the backend server:
 ```cmd
 python main.py
-```open with server in index.py
+```open with server in index.py file
 The backend will run on `http://localhost:8000`
 
 ### 3. Frontend Setup
