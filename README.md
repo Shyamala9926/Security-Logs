@@ -97,6 +97,7 @@ The backend will run on `http://localhost:8000`
 - Sample logs are provided for testing
 - The system uses simple pattern matching to simulate LLM-based analysis
 - Templates are extracted based on log structure and recurring patterns
+  
 # requirements.txt
 - fastapi==0.104.1
 - uvicorn==0.24.0
