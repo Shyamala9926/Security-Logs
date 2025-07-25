@@ -103,7 +103,7 @@ The backend will run on `http://localhost:8000`
 - uvicorn==0.24.0
 - python-multipart==0.0.6
 - pydantic==2.5.0
-- LLM	OpenAI GPT-3.5/4
+  
 
 # 🛠️ Technologies & Tools Used
 - Component	Tool
